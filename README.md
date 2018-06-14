@@ -6,3 +6,7 @@
 
 ### Run
 - python app.py
+
+
+### Tabela metod API
+![tabela.jpg](tabela.jpg)
