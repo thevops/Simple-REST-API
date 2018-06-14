@@ -1,0 +1,64 @@
+### POST
+
+# post
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X POST -d '{"title":"tytuł jakiś", "tags":"linux,it,python","text":"siemka to jest dlugi teskt"}' http://127.0.0.1:5000/posts
+
+# put
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X PUT -d '{"title":"nowy tytul", "tags":"kupa,siki","text":"jakiś dziwny tekst"}' http://127.0.0.1:5000/posts/<ID>
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X DELETE http://127.0.0.1:5000/posts/<ID>
+
+
+### User Posts
+
+# get
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X GET http://127.0.0.1:5000/users/<ID>/posts
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X DELETE http://127.0.0.1:5000/users/<ID>/posts
+
+
+### Tag Posts
+
+# get
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X GET http://127.0.0.1:5000/tags/<ID>/posts
+
+# put
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X PUT -d '{"new_tag_name":"linux"}' http://127.0.0.1:5000/tags/<ID>/posts
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X DELETE http://127.0.0.1:5000/tags/<ID>/posts
+
+
+### TAG
+
+# post
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X POST -d '{"name":"costam1"}' http://127.0.0.1:5000/tags
+
+# put
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X PUT -d '{"name":"costam1"}' http://127.0.0.1:5000/tags/<ID>
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X DELETE http://127.0.0.1:5000/tags/<ID>
+
+
+### TOKEN
+
+# post
+curl -i -H "Content-Type: application/json" -X POST -d '{"username":"admin", "password":"admin"}' http://127.0.0.1:5000/tokens
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 45d3e79eb291ca545a03ac8f73c57cd7" -X DELETE -d '{"username":"admin"}' http://127.0.0.1:5000/tokens
+
+
+### USER
+
+# post
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X POST -d '{"username":"mietek", "password":"mietek123"}' http://127.0.0.1:5000/users
+
+# put
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X PUT -d '{"username":"mietek", "password":"trudne_haslo"}' http://127.0.0.1:5000/users/<ID>
+
+# delete
+curl -i -H "Content-Type: application/json" -H "Token: 8ead1d7d0c79c9d53f5c3c439a4b1061" -X DELETE http://127.0.0.1:5000/users/<ID>
