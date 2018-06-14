@@ -30,7 +30,7 @@ def response_model(raw_model=None):
         raw_model = [raw_model]
 
     data = [one_row.serialize for one_row in raw_model]
-    #data.append(serialize_headers())
+    data.append(serialize_headers())
     return json.dumps(data, ensure_ascii=False, indent=4)
 
 def response_dict(data):
@@ -377,29 +377,22 @@ class TagAPI(MethodView):
         return response_model(), 200
 
 
-class TagIdPostAPI(MethodView):
-    def get(self, id=None):
-        """ 
-        args = {}
-        """
-        posts = Post.select().join(AssociationPostAndTag).join(Tag).where(Tag.id == id)
-        return response_model(posts)
-
-    def put(self, id=None):
+class MergeTag(MethodView):
+    def post(self):
         """ 
         headers = Token
-        args = {}
+        args = {"new_tag_name": new_tag_name}
         """
         user = auth_token()
         if not user:
             return response_model(), 401
 
-        req = get_json_data("new_tag_name")
+        req = get_json_data("old_tag_name","new_tag_name")
         if not req or not id:
             return response_model(), 400
 
         # get all posts with Tag.id
-        posts = Post.select().join(AssociationPostAndTag).join(Tag).where(Tag.id == id)
+        posts = Post.select().join(AssociationPostAndTag).join(Tag).where(Tag.name == req['old_tag_name'])
 
         # remove old Post-Tag connection
         for post in posts:
@@ -414,10 +407,19 @@ class TagIdPostAPI(MethodView):
             apat.save()
 
         # remove old tag
-        t = Tag.select().where(Tag.id == id).get()
+        t = Tag.select().where(Tag.name == req['old_tag_name']).get()
         t.delete_instance()
 
         return response_model(),200
+
+
+class TagIdPostAPI(MethodView):
+    def get(self, id=None):
+        """ 
+        args = {}
+        """
+        posts = Post.select().join(AssociationPostAndTag).join(Tag).where(Tag.id == id)
+        return response_model(posts)
 
 
     def delete(self, id=None):
