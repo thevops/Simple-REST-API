@@ -10,4 +10,5 @@
 
 ### Tables of API methods
 (t) - method requires token
+
 ![tabela.png](tabela.png)
