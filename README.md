@@ -9,4 +9,4 @@
 
 
 ### Tabela metod API
-![tabela.jpg](tabela.jpg)
+![tabela.png](tabela.png)
